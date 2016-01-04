@@ -17,6 +17,7 @@ import org.jfugue.player.Player;
  */
 public class SoundLogic {
   private final static char KEYBOARD[] = {'C', 'D', 'E', 'F', 'G', 'A', 'B'};
+  private final static char KEYBOARD_INDIAN[] = {'S', 'R', 'G', 'M', 'P', 'D', 'N'};
 
   /**
    * Method returns array of key.
@@ -41,6 +42,32 @@ public class SoundLogic {
       count++;
     }
     keys[count] = KEYBOARD[digit - 1];
+    return keys;
+  }
+
+  /**
+   * Method returns array of key.
+   * 
+   * @param number
+   * @return keys
+   */
+  public char[] getIndianKeys(final long number) {
+    char[] keys = new char[Toolbox.numberOfDigitInNumber(number) * 2 + 1];
+    long value = number;
+    int digit = 0;
+    int count = 0;
+    while (true) {
+      digit = (int) (value % 10);
+      value = value / 10;
+      if (value == 0)
+        break;
+
+      keys[count] = KEYBOARD_INDIAN[digit - 1];
+      count++;
+      keys[count] = ' ';
+      count++;
+    }
+    keys[count] = KEYBOARD_INDIAN[digit - 1];
     return keys;
   }
 
